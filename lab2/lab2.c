@@ -3,6 +3,7 @@
 #define NUM_SEC_DANS_1_HEURE 3600
 
 
+// Exo 1
 void afficher_duree(unsigned int num_secondes){
     int hr = 0;
     int min = 0;
