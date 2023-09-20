@@ -144,12 +144,23 @@ void afficher_90_a_99(unsigned int n){
 
 // Affiche un nombre entre 0 et 99
 void afficher_0_a_99(unsigned int n){
-    //TODO
+    if(n < 10 ){
+        afficher_unite(n);
+    }else if (n < 69) {
+        afficher_0_a_69(n);
+    }else if (n < 79){
+        afficher_70_a_79(n);
+    }else if (n < 89){
+        afficher_80_a_89(n);
+    } else {
+        afficher_90_a_99(n);
+    }
 }
 
 
 int main(int argc, char * argv[]){
 
+    printf("******Test des methodes seules*******\n");
     afficher_unite(9);
     printf("\n");
     afficher_dizaine(1);
@@ -158,8 +169,17 @@ int main(int argc, char * argv[]){
     printf("\n");
     afficher_70_a_79(76);
     printf("\n");
+    afficher_80_a_89(81);
+    printf("\n");
     afficher_90_a_99(92);
     printf("\n");
+
+    printf("******Print tout les nombres*******\n");
+
+    for(unsigned int i = 0; i < 100; i++){
+        afficher_0_a_99(i);
+        printf("\n");
+    }
 
     return 0;
 }
