@@ -32,6 +32,12 @@ struct solution solve_equation(struct equation eq){
     if(delta == 0){
         sol.num_solutions = 1;
         sol.solutions.one_solution = -(eq.b)/2 * eq.a;
+    } else if (delta < 0){
+        sol.num_solutions = 0;
+    } else {
+        sol.num_solutions = 2;
+        sol.solutions.two_solutions.first = (-(eq.b) - sqrt(delta))/ 2 * eq.a;
+        sol.solutions.two_solutions.second = (-(eq.b) + sqrt(delta))/ 2 * eq.a;
     }
     return sol;
 }
@@ -50,7 +56,11 @@ int main(int argc, char* argv[]){
 
     struct solution sol = solve_equation(eq);
 
-    printf("solution: %d, %.2f\n", sol.num_solutions, sol.solutions.one_solution);
+    printf("solution: %d, %.2f, %.2f\n",
+           sol.num_solutions,
+           sol.solutions.two_solutions.first,
+           sol.solutions.two_solutions.second);
+
 
     return 0;
 }
