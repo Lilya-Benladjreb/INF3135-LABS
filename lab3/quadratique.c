@@ -86,8 +86,5 @@ int main(int argc, char* argv[]){
         fprintf(stderr, USAGE);
     }
 
-
-
-
     return 0;
 }
