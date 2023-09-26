@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <math.h>
 
+#define USAGE "Usage: ./quadratique a b c\nRésoud l'équation quadratique ax^2 + bx + c == 0.\n"
+
+
 struct pair {
     double first;
     double second;
@@ -42,24 +45,48 @@ struct solution solve_equation(struct equation eq){
     return sol;
 }
 
-int main(int argc, char* argv[]){
-    double a = 1;
-    double b = -2;
-    double c = 1;
+void print_solution(struct solution sol){
+    printf("L'équation\n %.2fx^2 %c %.2fx %c %.2f == 0\n",
+           sol.equation.a,
+           '+',
+           sol.equation.b,
+           '+',
+           sol.equation.c);
+    switch (sol.num_solutions) {
+        case 0:
+            printf("Aucune solution\n");
+            break;
+        case 1:
+            printf("Admet la solution %.2f\n", sol.solutions.one_solution);
+            break;
+        case 2:
+            printf("Admet les solution %.2f et %.2f\n",
+                   sol.solutions.two_solutions.first,
+                   sol.solutions.two_solutions.second);
+            break;
+    }
+}
 
-    struct equation eq = {.a=a, .b=b, .c=c};
-    //Equivalent
+int main(int argc, char* argv[]){
+    if(argc == 4){
+        double a = atof(argv[1]);
+        double b = atof(argv[2]);
+        double c = atof(argv[3]);
+        struct equation eq = {.a=a, .b=b, .c=c};
+        //Equivalent
 //    struct equation eq;
 //    eq.a = a;
 //    eq.b = b;
 //    eq.c = c;
 
-    struct solution sol = solve_equation(eq);
+        struct solution sol = solve_equation(eq);
+        print_solution(sol);
+    } else {
+        fprintf(stderr, "Erreur: nombre d'arguments incorrect\n");
+        fprintf(stderr, USAGE);
+    }
 
-    printf("solution: %d, %.2f, %.2f\n",
-           sol.num_solutions,
-           sol.solutions.two_solutions.first,
-           sol.solutions.two_solutions.second);
+
 
 
     return 0;
