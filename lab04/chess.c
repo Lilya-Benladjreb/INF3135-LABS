@@ -45,7 +45,8 @@ void ajouter_piece(struct echiquier *echiquier,
                    unsigned int c,
                    enum couleur couleur,
                    enum type_piece type_piece) {
-    // À compléter
+    struct piece piece = piece{.c};
+    echiquier->pieces[p]=
 }
 
 /**
