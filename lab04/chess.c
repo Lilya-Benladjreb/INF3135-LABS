@@ -125,7 +125,9 @@ void afficher_piece(const struct piece *piece) {
  * @param echiquier  L'échiquier à afficher
  */
 void afficher_echiquier(const struct echiquier *echiquier) {
-    // À compléter
+    for(unsigned int r = 0; r < 8; r++){
+        //à completer
+    }
 }
 
 int main(void) {

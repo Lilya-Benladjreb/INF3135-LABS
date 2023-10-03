@@ -8,7 +8,18 @@
  * If no character is repeated, returns `'\0'`.
  */
 char first_repeated(const char *s) {
-    // À compléter
+    bool seen[256];
+    for(unsigned int i = 0; i < 256; i++){
+        seen[i] = false;
+    }
+    for(unsigned int i = 0; s[i] != '\0'; i++){
+        unsigned int encodage = (unsigned int)s[i];
+        if(seen[encodage]){
+            return s[i];
+        }else{
+            seen[encodage] = true;
+        }
+    }
     return '\0';
 }
 
@@ -16,8 +27,13 @@ char first_repeated(const char *s) {
  * Returns the number of times the string t appears in another string s
  */
 unsigned int num_occurrences(const char *s, const char *t) {
-    // À compléter
-    return 0;
+    unsigned int n = 0;
+    char * o = strstr(s, t);
+    while(o != NULL){
+        n++;
+        o = strstr(o+1, t);
+    }
+    return n;
 }
 
 void test_first_repeated(void) {
@@ -43,6 +59,9 @@ void test_num_occurrences(void) {
 }
 
 int main(int argc, char *argv[]) {
+    char * s = "abracadara";
+    char * needle = "a";
+
     if (argc == 2) {
         if (strcmp(argv[1], "fr") == 0)
             test_first_repeated();

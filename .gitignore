@@ -2,3 +2,5 @@
 *.idea
 quadratique
 .DS_Store
+/string.dSYM
+string
