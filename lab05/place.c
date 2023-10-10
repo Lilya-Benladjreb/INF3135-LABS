@@ -59,13 +59,21 @@ void load_list(struct list *list) {
     }
 }
 
+void print_place(const struct place *place){
+    printf("Place{name=%s,admin_code=%s,postal_code=%s,",
+        place->name, place->admin_code, place->postal_code);
+    printf("latitude=%lf,longitude=%lf}\n", place->latitude, place->longitude);    
+}
+
 /**
  * Prints a list to stdout
  *
  * @param list  The list to print
  */
 void print_list(const struct list *list) {
-    // À compléter
+    for(unsigned int i = 0; i < list->size; i++){
+        print_place(list->places + i);
+    }
 }
 
 /**
