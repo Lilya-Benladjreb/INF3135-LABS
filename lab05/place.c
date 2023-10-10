@@ -40,7 +40,23 @@ void initialize_list(struct list *list) {
  * @param list  The list to populate
  */
 void load_list(struct list *list) {
-    // À compléter
+    struct place *place = list -> places;
+    char ligne[BUFFER_SIZE];
+
+    while(list->size < MAX_SIZE && fgets(ligne,BUFFER_SIZE, stdin)){
+        char *token = strtok(ligne, ";\n");
+        strncpy(place->postal_code, token, POSTAL_CODE_SIZE - 1);
+        token = strtok(NULL, ";\n");
+        strncpy(place->name, token, NAME_LENGTH - 1);
+        token = strtok(NULL, ";\n");
+        strncpy(place->admin_code, token, ADMIN_CODE_SIZE - 1);
+        token = strtok(NULL, ";\n");
+        place->latitude = strtof(token, NULL);
+        token = strtok(NULL, ";\n");
+        place->longitude = strtof(token, NULL);
+        list->size++;
+        ++place;
+    }
 }
 
 /**
