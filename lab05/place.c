@@ -77,7 +77,7 @@ void print_list(const struct list *list) {
     }
 }
 
-int compare(void * x, void * y){
+int compare_by_postal_code(void * x, void * y){
     return strcmp(((const struct place *)x)->postal_code, ((const struct place *)y)->postal_code);
 }
 
@@ -87,16 +87,21 @@ int compare(void * x, void * y){
  * @param list  The list to sort
  */
 void sort_by_postal_code(struct list *list) {
-    qsort(list->places,list->size, sizeof(struct place), compare());
+    qsort(list->places,list->size, sizeof(struct place), compare_by_postal_code);
 }
 
+int compare_by_latitude(void * x, void * y){
+    wgs84 diff = ((const struct place *)x)->latitude - ((const struct place *)y)->latitude;
+    return diff == 0? 0 : (diff < 0? -1 : 1);
+
+}
 /**
  * Sorts the given list by latitude
  *
  * @param list  The list to sort
  */
 void sort_by_latitude(struct list *list) {
-    // À compléter
+    qsort(list->places,list->size, sizeof(struct place), compare_by_latitude);
 }
 
 /**
