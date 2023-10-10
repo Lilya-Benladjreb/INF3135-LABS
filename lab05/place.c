@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <math.h>
 
 #define POSTAL_CODE_SIZE 20
 #define NAME_LENGTH 180
@@ -76,13 +77,17 @@ void print_list(const struct list *list) {
     }
 }
 
+int compare(void * x, void * y){
+    return strcmp(((const struct place *)x)->postal_code, ((const struct place *)y)->postal_code);
+}
+
 /**
  * Sorts the given list by postal code
  *
  * @param list  The list to sort
  */
 void sort_by_postal_code(struct list *list) {
-    // À compléter
+    qsort(list->places,list->size, sizeof(struct place), compare());
 }
 
 /**
